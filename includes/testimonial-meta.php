@@ -1,5 +1,8 @@
 <?php
 
+if ( ! defined('ABSPATH')) exit;
+
+
 add_action('init', 'testimonial_register');
  
 function testimonial_register() {

@@ -1,5 +1,8 @@
 <?php
 
+if ( ! defined('ABSPATH')) exit;
+
+
 function testimonial_body_flat($post_id)
 	{
 		

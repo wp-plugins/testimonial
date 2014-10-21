@@ -3,10 +3,10 @@
 
 
 
-function testimonial_sc_get_all_post_ids($postid)
+function testimonial_get_all_post_ids($postid)
 	{
 		
-		$testimonial_sc_post_ids = get_post_meta( $postid, 'testimonial_sc_post_ids', true );
+		$testimonial_post_ids = get_post_meta( $postid, 'testimonial_post_ids', true );
 		
 		
 		$return_string = '';
@@ -22,9 +22,9 @@ function testimonial_sc_get_all_post_ids($postid)
 		if($product_query->have_posts()): while($product_query->have_posts()): $product_query->the_post();
 		
 
-	   $return_string .= '<li><label ><input class="testimonial_sc_post_ids" type="checkbox" name="testimonial_sc_post_ids['.get_the_ID().']" value ="'.get_the_ID().'" ';
+	   $return_string .= '<li><label ><input class="testimonial_post_ids" type="checkbox" name="testimonial_post_ids['.get_the_ID().']" value ="'.get_the_ID().'" ';
 		
-		if ( isset( $testimonial_sc_post_ids[get_the_ID()] ) )
+		if ( isset( $testimonial_post_ids[get_the_ID()] ) )
 			{
 			$return_string .= "checked";
 			}
@@ -50,21 +50,21 @@ function testimonial_sc_get_all_post_ids($postid)
 
 
 
-function testimonial_sc_get_taxonomy_category($postid)
+function testimonial_get_taxonomy_category($postid)
 	{
 
-	$testimonial_sc_taxonomy = array('testimonial_group');
+	$testimonial_taxonomy = array('testimonial_group');
 	
-	if(empty($testimonial_sc_taxonomy))
+	if(empty($testimonial_taxonomy))
 		{
-			$testimonial_sc_taxonomy= "";
+			$testimonial_taxonomy= "";
 		}
-	$testimonial_sc_taxonomy_category = get_post_meta( $postid, 'testimonial_sc_taxonomy_category', true );
+	$testimonial_taxonomy_category = get_post_meta( $postid, 'testimonial_taxonomy_category', true );
 	
 		
-		if(empty($testimonial_sc_taxonomy_category))
+		if(empty($testimonial_taxonomy_category))
 			{
-			 	$testimonial_sc_taxonomy_category =array('none'); // an empty array when no category element selected
+			 	$testimonial_taxonomy_category =array('none'); // an empty array when no category element selected
 				
 			
 			}
@@ -73,7 +73,7 @@ function testimonial_sc_get_taxonomy_category($postid)
 		
 		if(!isset($_POST['taxonomy']))
 			{
-			$taxonomy =$testimonial_sc_taxonomy;
+			$taxonomy =$testimonial_taxonomy;
 			}
 		else
 			{
@@ -101,14 +101,14 @@ function testimonial_sc_get_taxonomy_category($postid)
 	
 	foreach($categories as $category){
 		
-		if(array_search($category->cat_ID, $testimonial_sc_taxonomy_category))
+		if(array_search($category->cat_ID, $testimonial_taxonomy_category))
 		{
-	   $return_string .= '<li class='.$category->cat_ID.'><label ><input class="testimonial_sc_taxonomy_category" checked type="checkbox" name="testimonial_sc_taxonomy_category['.$category->cat_ID.']" value ="'.$category->cat_ID.'" />'.$category->cat_name.'</label ></li>';
+	   $return_string .= '<li class='.$category->cat_ID.'><label ><input class="testimonial_taxonomy_category" checked type="checkbox" name="testimonial_taxonomy_category['.$category->cat_ID.']" value ="'.$category->cat_ID.'" />'.$category->cat_name.'</label ></li>';
 		}
 		
 		else
 			{
-				   $return_string .= '<li class='.$category->cat_ID.'><label ><input class="testimonial_sc_taxonomy_category" type="checkbox" name="testimonial_sc_taxonomy_category['.$category->cat_ID.']" value ="'.$category->cat_ID.'" />'.$category->cat_name.'</label ></li>';			
+				   $return_string .= '<li class='.$category->cat_ID.'><label ><input class="testimonial_taxonomy_category" type="checkbox" name="testimonial_taxonomy_category['.$category->cat_ID.']" value ="'.$category->cat_ID.'" />'.$category->cat_name.'</label ></li>';			
 			}
 		
 		
@@ -135,7 +135,7 @@ function testimonial_sc_get_taxonomy_category($postid)
 
 
 
-function testimonial_sc_dark_color($input_color)
+function testimonial_dark_color($input_color)
 	{
 		if(empty($input_color))
 			{

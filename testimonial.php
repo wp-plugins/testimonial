@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Testimonial
-Plugin URI: 
-Description: Fully responsive and mobile ready testimonial grid for wordpress.
+Plugin URI: http://paratheme.com
+Description: Fully responsive and mobile ready testimonial slider for wordpress.
 Version: 1.0
-Author: wpkids
+Author: paratheme
 Author URI: http://paratheme.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

@@ -114,7 +114,7 @@ function testimonial_body_flat($post_id)
 
 			}
 
-		elseif($testimonial_content_source="taxonomy")
+		elseif($testimonial_content_source=="taxonomy")
 			{
 				$wp_query = new WP_Query(
 					array (
@@ -134,20 +134,31 @@ function testimonial_body_flat($post_id)
 
 
 		
-		elseif(($testimonial_content_source=="post_id"))
+		elseif($testimonial_content_source=="post_id")
 			{
 			
 				$wp_query = new WP_Query(
 					array (
 						'post__in' => $testimonial_post_ids,
 						'post_type' => $testimonial_posttype,
-						
-						
+						'posts_per_page' => $testimonial_total_items,
 						) );
 			
 			
 			}
-
+			
+		else
+			{
+				$wp_query = new WP_Query(
+					array (
+						'post_type' => $testimonial_posttype,
+						'orderby' => 'date',
+						'order' => 'DESC',
+						'posts_per_page' => $testimonial_total_items,
+						
+						) );
+			
+			}
 			
 
 								

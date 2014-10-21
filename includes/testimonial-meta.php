@@ -682,7 +682,7 @@ function meta_boxes_testimonial_sc_input( $post ) {
             <div class="testimonial_content_source_taxonomy content-source-box" >
 				<?php
 
-					testimonial_sc_get_taxonomy_category($post->ID);
+					testimonial_get_taxonomy_category($post->ID);
 				
 				?>
             
@@ -693,7 +693,7 @@ function meta_boxes_testimonial_sc_input( $post ) {
             <div  class="testimonial_content_source_post_id content-source-box" >
 				<?php
 
-                        testimonial_sc_get_all_post_ids($post->ID);
+                        testimonial_get_all_post_ids($post->ID);
 
                 ?>
             

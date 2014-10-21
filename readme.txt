@@ -46,20 +46,20 @@ Very easy to use via shortcode anywhere,
 
 After activate plugin you will see "Testimonial" menu at left side on WordPress dashboard click "Add New Testimonial" and use the options field "Testimonial Options"<br />
 
-Use title as clients name.
-Use content as clients comments.
-Featured image as clients thumbnail.
-Testmonial can be assign with category.
-Use social link for top socla website.
+Use title as clients name.<br />
+Use content as clients comments.<br />
+Featured image as clients thumbnail.<br />
+Testmonial can be assign with category.<br />
+Use social link for top social website.<br />
 
 First create some testimonial.
 
-And then you need to generate shortcode
-see "Testimonial showcase" menu at left side on WordPress dashboard click "New Testimonial showcase" you will see options for testimonial. 
+And then you need to generate shortcode<br />
+see "Testimonial showcase" menu at left side on WordPress dashboard click "New Testimonial showcase" you will see options for generating testimonial showcase. 
 
 <br />
 <strong>How to use on page or post</strong><br />
-When Testimonial options setup done please publish Testimonial as like post or page<br />
+When Testimonial showcase options setup done publish Testimonial as like post or page<br />
 
 and then copy shortcode from top of <strong>Testimonial Showcase Options</strong> `[testimonial_sc  id="1234" ]`<br />
 
@@ -72,7 +72,6 @@ then paste this shortcode anywhere in your page to display Testimonial<br />
 
 
 == Screenshots ==
-
 1. screenshot-1
 
 

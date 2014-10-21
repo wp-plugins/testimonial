@@ -52,13 +52,7 @@ if($testimonial_customer_type=="free")
 	<li>Life Time Support via forum.</li>
 	<li>7 Days Refund.</li>
 	<li>Unlimited slider anywhere.</li>    
-	<li>Fully responsive and mobile ready.</li>    
-	<li>Query product by Taxonomy and Categories.</li>
-    <li>Query product by Product id.</li>
-	<li>Amazing extra 4 themes.</li>   
-	<li>Slider Items Title Color.</li>  
-	<li>Slider Items Price Color.</li>
-	<li>Slider Custom ribbons.</li>    
+
 
 
 </ul>

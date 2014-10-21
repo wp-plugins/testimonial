@@ -47,14 +47,10 @@ if($testimonial_customer_type=="free")
 <b>Premium Version Features</b><br />
 
 <ul class="testimonial-pro-features">
-
 	<li>Life Time Automatic Update.</li>
 	<li>Life Time Support via forum.</li>
 	<li>7 Days Refund.</li>
 	<li>Unlimited slider anywhere.</li>    
-
-
-
 </ul>
 
 
@@ -77,11 +73,11 @@ if($testimonial_customer_type=="free")
 <script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
 
 <!-- Place this tag where you want the +1 button to render. -->
-<div class="g-plusone" data-size="medium" data-href="http://wordpress.org/plugins/woocommerce-products-slider/"></div>
+<div class="g-plusone" data-size="medium" data-href="https://wordpress.org/plugins/testimonial/"></div>
 
 </td>
 <td width="100px">
-<iframe src="//www.facebook.com/plugins/like.php?href=http://wordpress.org/plugins/woocommerce-products-slider/&amp;width=100&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=743541755673761" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+<iframe src="//www.facebook.com/plugins/like.php?href=https://wordpress.org/plugins/testimonial/&amp;width=100&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=743541755673761" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
 
  </td>
 <td width="100px"> 
@@ -90,7 +86,7 @@ if($testimonial_customer_type=="free")
 
 
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://wordpress.org/plugins/woocommerce-products-slider/" data-text="Timeline Pro – Responsive Timeline for WordPres">Tweet</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://wordpress.org/plugins/testimonial/" data-text="testimonial – Responsive Testimonial for WordPres">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </td>
 

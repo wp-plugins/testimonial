@@ -15,6 +15,21 @@ function testimonial_body_flat($post_id)
 		$testimonial_total_items = get_post_meta( $post_id, 'testimonial_total_items', true );		
 		$testimonial_column_number = get_post_meta( $post_id, 'testimonial_column_number', true );
 
+		$testimonial_auto_play = get_post_meta( $post_id, 'testimonial_auto_play', true );
+		$testimonial_stop_on_hover = get_post_meta( $post_id, 'testimonial_stop_on_hover', true );
+		$testimonial_slider_navigation = get_post_meta( $post_id, 'testimonial_slider_navigation', true );
+		$testimonial_slide_speed = get_post_meta( $post_id, 'testimonial_slide_speed', true );
+				
+		$testimonial_slider_pagination = get_post_meta( $post_id, 'testimonial_slider_pagination', true );
+		$testimonial_pagination_slide_speed = get_post_meta( $post_id, 'testimonial_pagination_slide_speed', true );
+		$testimonial_slider_pagination_count = get_post_meta( $post_id, 'testimonial_slider_pagination_count', true );
+		
+		$testimonial_slider_pagination_bg = get_post_meta( $post_id, 'testimonial_slider_pagination_bg', true );
+		$testimonial_slider_pagination_text_color = get_post_meta( $post_id, 'testimonial_slider_pagination_text_color', true );		
+		
+		$testimonial_slider_touch_drag = get_post_meta( $post_id, 'testimonial_slider_touch_drag', true );
+		$testimonial_slider_mouse_drag = get_post_meta( $post_id, 'testimonial_slider_mouse_drag', true );
+		
 		$testimonial_content_source = get_post_meta( $post_id, 'testimonial_content_source', true );
 		$testimonial_content_year = get_post_meta( $post_id, 'testimonial_content_year', true );
 		$testimonial_content_month = get_post_meta( $post_id, 'testimonial_content_month', true );
@@ -296,13 +311,108 @@ function testimonial_body_flat($post_id)
 		{
 			$("#testimonial-'.$post_id.'").owlCarousel({
 				
-				items : 1, //10 items above 1000px browser width
+				items : '.$testimonial_column_number.', //10 items above 1000px browser width
 				itemsDesktop : [1000,1], //5 items between 1000px and 901px
 				itemsDesktopSmall : [900,1], // betweem 900px and 601px
 				itemsTablet: [600,1], //2 items between 600 and 0
-				itemsMobile : [479,1], 
+				itemsMobile : false, 
 				navigationText : ["",""],
 				';
+				
+			
+		if($testimonial_auto_play=="true")
+			{
+				
+		$testimonial_body .='autoPlay: '.$testimonial_auto_play.',';
+		
+			}	
+		
+		if($testimonial_stop_on_hover=="true")
+			{
+				
+		$testimonial_body .='stopOnHover: '.$testimonial_stop_on_hover.',';
+		
+			}				
+				
+		if($testimonial_slider_navigation=="true")
+			{
+				
+		$testimonial_body .='navigation: '.$testimonial_slider_navigation.',';
+		
+			}				
+				
+		if(!empty($testimonial_slider_pagination))
+			{
+				
+		$testimonial_body .='pagination: '.$testimonial_slider_pagination.',';
+		
+			}
+		else
+			{
+			$testimonial_body .='pagination: false,';
+			}
+				
+				
+		if(!empty($testimonial_slider_pagination_count))
+			{
+				
+		$testimonial_body .='paginationNumbers: true,';
+		
+			}
+		else
+			{
+			$testimonial_body .='paginationNumbers: false,';
+			}				
+				
+				
+				
+		if(!empty($testimonial_slide_speed))
+			{
+				
+		$testimonial_body .='slideSpeed: '.$testimonial_slide_speed.',';
+		
+			}
+			
+				
+		if(!empty($testimonial_pagination_slide_speed))
+			{
+				
+		$testimonial_body .='paginationSpeed: '.$testimonial_pagination_slide_speed.',';
+		
+			}			
+			
+			
+		if(!empty($testimonial_slider_touch_drag))
+			{
+				
+		$testimonial_body .='touchDrag : true,';
+		
+			}			
+		else
+			{
+			$testimonial_body .='touchDrag: false,';
+			}
+			
+			
+			
+		if(!empty($testimonial_slider_mouse_drag ))
+			{
+				
+		$testimonial_body .='mouseDrag  : true,';
+		
+			}			
+		else
+			{
+			$testimonial_body .='mouseDrag : false,';
+			}			
+			
+			
+			
+			
+							
+				
+				
+				
 		$testimonial_body .='});
 		
 		});</script>';

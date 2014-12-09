@@ -3,7 +3,7 @@
 Plugin Name: Testimonial
 Plugin URI: http://paratheme.com
 Description: Fully responsive and mobile ready testimonial slider for wordpress.
-Version: 1.0
+Version: 1.1
 Author: paratheme
 Author URI: http://paratheme.com
 License: GPLv2 or later
@@ -42,8 +42,14 @@ function testimonial_init_scripts()
 		wp_enqueue_style('owl.carousel', testimonial_plugin_url.'css/owl.carousel.css');
 		wp_enqueue_style('owl.theme', testimonial_plugin_url.'css/owl.theme.css');
 		
+		//ParaAdmin
+		wp_enqueue_style('ParaAdmin', testimonial_plugin_url.'ParaAdmin/css/ParaAdmin.css');
+		//wp_enqueue_style('ParaIcons', accordions_plugin_url.'ParaAdmin/css/ParaIcons.css');		
+		wp_enqueue_script('ParaAdmin', plugins_url( 'ParaAdmin/js/ParaAdmin.js' , __FILE__ ) , array( 'jquery' ));
+		
 		// Style for themes
-		wp_enqueue_style('testimonial-style-flat', testimonial_plugin_url.'themes/flat/style.css');			
+		wp_enqueue_style('testimonial-style-flat', testimonial_plugin_url.'themes/flat/style.css');	
+				
 
 		
 	}
@@ -60,11 +66,34 @@ register_activation_hook(__FILE__, 'testimonial_activation');
 
 function testimonial_activation()
 	{
-		$testimonial_version= "1.0";
+		$testimonial_version = "1.1";
 		update_option('testimonial_version', $testimonial_version); //update plugin version.
 		
 		$testimonial_customer_type= "free"; //customer_type "free"
 		update_option('testimonial_customer_type', $testimonial_customer_type); //update plugin version.
+		
+		
+		$api_url = 'http://paratheme.com/installstats/';
+		
+		$wp_version = get_bloginfo('version'); // no change
+		$domain = get_bloginfo( 'url' ); // no change
+		$item_slug = basename(dirname(__FILE__)); // no change
+		$item_version = $testimonial_version; // current item version
+		$item_type = 'plugin'; // plugin, theme, addon		
+		$action = 'active'; //active, inactive, install, uninstall
+	
+		$request_string = array(
+				'user-agent' => $wp_version . '; ' . $domain . '; ' . $item_slug . '; ' . $item_version . '; ' . $item_type. '; ' . $action,
+
+				
+			);
+			
+			
+		wp_remote_post($api_url, $request_string);
+		
+
+		
+		
 	}
 
 

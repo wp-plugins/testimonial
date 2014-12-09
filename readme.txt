@@ -1,10 +1,10 @@
 === Testimonial ===
 	Contributors: paratheme
 	Donate link: http://paratheme.com
-	Tags: simple testimonial, testimonial, testimonial with template,  testimonial slider,
+	Tags: simple testimonial, testimonial, testimonial with template,  testimonial slider, testimonial slide
 	Requires at least: 3.8
 	Tested up to: 4.0
-	Stable tag: 1.0
+	Stable tag: 1.1
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,8 @@ then paste this shortcode anywhere in your page to display Testimonial<br />
 
 == Changelog ==
 
+	= 1.1 =
+    * 12/12/2014 Update slider Options.
 	
 	= 1.0 =
     * 06/09/2014 Initial release.

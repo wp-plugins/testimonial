@@ -3,7 +3,7 @@
 Plugin Name: Testimonial
 Plugin URI: http://paratheme.com
 Description: Fully responsive and mobile ready testimonial slider for wordpress.
-Version: 1.1
+Version: 1.2
 Author: paratheme
 Author URI: http://paratheme.com
 License: GPLv2 or later
@@ -25,7 +25,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/testimonial-functions.php'
 
 //Themes php files
 require_once( plugin_dir_path( __FILE__ ) . 'themes/flat/index.php');
-
+require_once( plugin_dir_path( __FILE__ ) . 'themes/rounded/index.php');
 
 
 function testimonial_init_scripts()
@@ -49,7 +49,7 @@ function testimonial_init_scripts()
 		
 		// Style for themes
 		wp_enqueue_style('testimonial-style-flat', testimonial_plugin_url.'themes/flat/style.css');	
-				
+		wp_enqueue_style('testimonial-style-rounded', testimonial_plugin_url.'themes/rounded/style.css');				
 
 		
 	}
@@ -66,7 +66,7 @@ register_activation_hook(__FILE__, 'testimonial_activation');
 
 function testimonial_activation()
 	{
-		$testimonial_version = "1.1";
+		$testimonial_version = "1.2";
 		update_option('testimonial_version', $testimonial_version); //update plugin version.
 		
 		$testimonial_customer_type= "free"; //customer_type "free"
@@ -115,7 +115,10 @@ function testimonial_display($atts, $content = null ) {
 				{
 					$testimonial_display.= testimonial_body_flat($post_id);
 				}
-
+			else if($testimonial_themes== "rounded")
+				{
+					$testimonial_display.= testimonial_body_rounded($post_id);
+				}
 return $testimonial_display;
 
 

@@ -4,7 +4,7 @@
 	Tags: simple testimonial, testimonial, testimonial with template,  testimonial slider, testimonial slide
 	Requires at least: 3.8
 	Tested up to: 4.0
-	Stable tag: 1.1
+	Stable tag: 1.2
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,9 @@ then paste this shortcode anywhere in your page to display Testimonial<br />
 
 == Changelog ==
 
+	= 1.2 =
+    * 12/12/2014 Added Theme Rounded.
+	
 	= 1.1 =
     * 12/12/2014 Update slider Options.
 	

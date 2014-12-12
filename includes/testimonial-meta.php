@@ -571,7 +571,7 @@ function meta_boxes_testimonial_sc_input( $post ) {
                     <p class="option-info"></p>
                     <select name="testimonial_themes"  >
                     <option class="testimonial_themes_flat" value="flat" <?php if($testimonial_themes=="flat")echo "selected"; ?>>Flat</option>
-                  
+                    <option class="testimonial_themes_rounded" value="rounded" <?php if($testimonial_themes=="rounded")echo "selected"; ?>>Rounded</option>                  
                     </select>
                     
                     

@@ -79,6 +79,7 @@ then paste this shortcode anywhere in your page to display Testimonial<br />
 
 	= 1.2 =
     * 12/12/2014 Added Theme Rounded.
+
 	
 	= 1.1 =
     * 12/12/2014 Update slider Options.

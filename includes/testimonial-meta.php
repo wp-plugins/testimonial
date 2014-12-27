@@ -362,6 +362,7 @@ function meta_boxes_testimonial_sc_input( $post ) {
     <div class="para-settings">
         <div class="option-box">
             <p class="option-title">Shortcode</p>
+            
             <p class="option-info">Copy this shortcode and paste on page or post where you want to display slider. <br />Use PHP code to your themes file to display slider.</p>
         	<textarea cols="50" rows="1" style="background:#bfefff" onClick="this.select();" >[testimonial_sc <?php echo ' id="'.$post->ID.'"';?> ]</textarea>
         <br /><br />
@@ -571,7 +572,8 @@ function meta_boxes_testimonial_sc_input( $post ) {
                     <p class="option-info"></p>
                     <select name="testimonial_themes"  >
                     <option class="testimonial_themes_flat" value="flat" <?php if($testimonial_themes=="flat")echo "selected"; ?>>Flat</option>
-                    <option class="testimonial_themes_rounded" value="rounded" <?php if($testimonial_themes=="rounded")echo "selected"; ?>>Rounded</option>                  
+                    <option class="testimonial_themes_rounded" value="rounded" <?php if($testimonial_themes=="rounded")echo "selected"; ?>>Rounded</option>
+
                     </select>
                     
                     
@@ -716,28 +718,8 @@ function meta_boxes_testimonial_sc_input( $post ) {
             </div>
             </li>            
 
-            <li><input class="testimonial_content_source" name="testimonial_content_source" id="testimonial_content_source_taxonomy" type="radio" value="taxonomy" <?php if($testimonial_content_source=="taxonomy")  echo "checked";?> /> <label for="testimonial_content_source_taxonomy">Display  from Testimonial Groups.</label>
+                       
             
-            <div class="testimonial_content_source_taxonomy content-source-box" >
-				<?php
-
-					testimonial_get_taxonomy_category($post->ID);
-				
-				?>
-            
-            </div>
-            </li>           
-            <li><input class="testimonial_content_source" name="testimonial_content_source" id="testimonial_content_source_post_id" type="radio" value="post_id" <?php if($testimonial_content_source=="post_id")  echo "checked";?> /> <label for="testimonial_content_source_post_id">Display by Testimonial id</label>
-            
-            <div  class="testimonial_content_source_post_id content-source-box" >
-				<?php
-
-                        testimonial_get_all_post_ids($post->ID);
-
-                ?>
-            
-            </div>
-            </li>
             </ul>
                     
                     

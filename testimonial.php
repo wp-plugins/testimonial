@@ -50,8 +50,7 @@ function testimonial_init_scripts()
 		// Style for themes
 		wp_enqueue_style('testimonial-style-flat', testimonial_plugin_url.'themes/flat/style.css');	
 		wp_enqueue_style('testimonial-style-rounded', testimonial_plugin_url.'themes/rounded/style.css');				
-
-		
+	
 	}
 add_action("init","testimonial_init_scripts");
 
@@ -119,6 +118,15 @@ function testimonial_display($atts, $content = null ) {
 				{
 					$testimonial_display.= testimonial_body_rounded($post_id);
 				}
+			else if($testimonial_themes== "rounded_vertical")
+				{
+					$testimonial_display.= testimonial_body_rounded_vertical($post_id);
+				}				
+			else if($testimonial_themes== "simple")
+				{
+					$testimonial_display.= testimonial_body_simple($post_id);
+				}					
+				
 return $testimonial_display;
 
 

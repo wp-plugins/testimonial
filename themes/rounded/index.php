@@ -1,20 +1,9 @@
 <?php
 
-/*
-
-Version: 1.2
-Author: ParaTheme
-Theme Name: Flat
-
-*/
-
-
-
-
 if ( ! defined('ABSPATH')) exit;
 
 
-function testimonial_body_flat($post_id)
+function testimonial_body_rounded($post_id)
 	{
 		
 		

@@ -3,7 +3,7 @@
 Plugin Name: Testimonial
 Plugin URI: http://paratheme.com
 Description: Fully responsive and mobile ready testimonial slider for wordpress.
-Version: 1.2
+Version: 1.3
 Author: paratheme
 Author URI: http://paratheme.com
 License: GPLv2 or later
@@ -65,7 +65,7 @@ register_activation_hook(__FILE__, 'testimonial_activation');
 
 function testimonial_activation()
 	{
-		$testimonial_version = "1.2";
+		$testimonial_version = "1.3";
 		update_option('testimonial_version', $testimonial_version); //update plugin version.
 		
 		$testimonial_customer_type= "free"; //customer_type "free"

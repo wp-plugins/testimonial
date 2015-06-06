@@ -326,6 +326,7 @@ function meta_boxes_testimonial_sc_input( $post ) {
 	$testimonial_stop_on_hover = get_post_meta( $post->ID, 'testimonial_stop_on_hover', true );
 	$testimonial_slider_navigation = get_post_meta( $post->ID, 'testimonial_slider_navigation', true );
 	$testimonial_slider_navigation_speed = get_post_meta( $post->ID, 'testimonial_slider_navigation_speed', true );
+	$testimonial_slide_speed = get_post_meta( $post->ID, 'testimonial_slide_speed', true );		
 		
 	$testimonial_slider_pagination = get_post_meta( $post->ID, 'testimonial_slider_pagination', true );
 	$testimonial_pagination_slide_speed = get_post_meta( $post->ID, 'testimonial_pagination_slide_speed', true );
@@ -502,7 +503,7 @@ function meta_boxes_testimonial_sc_input( $post ) {
 				<div class="option-box">
                     <p class="option-title">Slide Speed</p>
                     <p class="option-info"></p> 
-                    <input type="text" id="testimonial_slide_speed" name="testimonial_slide_speed" value="<?php if(!empty($testimonial_slide_speed)) echo $testimonial_slide_speed; else echo "1000"; ?>"  />
+                    <input type="text" id="testimonial_slide_speed" placeholder="1000" name="testimonial_slide_speed" value="<?php if(!empty($testimonial_slide_speed)) echo $testimonial_slide_speed; ?>"  />
                 </div> 
                 
 				<div class="option-box">
@@ -818,6 +819,11 @@ function meta_boxes_testimonial_sc_save( $post_id ) {
 	$testimonial_content_month = sanitize_text_field( $_POST['testimonial_content_month'] );
 	$testimonial_content_month_year = sanitize_text_field( $_POST['testimonial_content_month_year'] );	
 
+
+	if(empty($_POST['testimonial_taxonomy_category']))
+		{
+			$_POST['testimonial_taxonomy_category'] = '';
+		}
 	$testimonial_taxonomy_category = stripslashes_deep( $_POST['testimonial_taxonomy_category'] );
 	
 	$testimonial_post_ids = stripslashes_deep( $_POST['testimonial_post_ids'] );	

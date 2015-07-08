@@ -10,14 +10,12 @@
 if ( ! defined('ABSPATH')) exit;
 		
 		
-		
 		include testimonial_plugin_dir.'/templates/variables.php';
-
+		
 		$html.= '
 		<div  class="testimonial-container" style="background-image:url('.$testimonial_bg_img.')">
 		<ul  id="testimonial-'.$post_id.'" class="owl-carousel testimonial-items testimonial-'.$testimonial_themes.'">';
 		include testimonial_plugin_dir.'/templates/query.php';
-			
 
 								
 		
@@ -28,8 +26,8 @@ if ( ! defined('ABSPATH')) exit;
 		$i=0;
 		
 		while ( $wp_query->have_posts() ) : $wp_query->the_post();
-
-		$testimonial_thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), $testimonial_items_thumb_size );
+		
+			$testimonial_thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), $testimonial_items_thumb_size );
 		$testimonial_thumb_url = $testimonial_thumb['0'];
 		
 		
@@ -49,6 +47,7 @@ if ( ! defined('ABSPATH')) exit;
 		$html.= '<li style="width:'.$testimonial_items_max_width.'; text-align:'.$testimonial_item_text_align.';" class="testimonial-item '.$even_odd.'" >';
 		$html.= '<div class="testimonial-post">';		
 		
+
 		
 		if(!empty($testimonial_thumb_url))
 			{
@@ -64,7 +63,7 @@ if ( ! defined('ABSPATH')) exit;
 	$testimonial_twitter = get_post_meta( get_the_ID(), 'testimonial_twitter', true );
 	$testimonial_google = get_post_meta( get_the_ID(), 'testimonial_google', true );
 	$testimonial_pinterest = get_post_meta( get_the_ID(), 'testimonial_pinterest', true );	
-	$testimonial_ratings = get_post_meta( get_the_ID(), 'testimonial_ratings', true );
+	$testimonial_ratings = get_post_meta( get_the_ID(), 'testimonial_ratings', true );	
 
 	
 			
@@ -117,8 +116,10 @@ if ( ! defined('ABSPATH')) exit;
 			$html.= '</div>';
 			
 
+
 			include testimonial_plugin_dir.'/templates/content.php';
 			include testimonial_plugin_dir.'/templates/star-rate.php';	
+			
 			$html.= '</div>			
 			
 			</div>

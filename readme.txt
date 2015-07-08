@@ -3,8 +3,8 @@
 	Donate link: http://paratheme.com
 	Tags: simple testimonial, testimonial, testimonial with template,  testimonial slider, testimonial slide
 	Requires at least: 3.8
-	Tested up to: 4.2.2
-	Stable tag: 1.3
+	Tested up to: 4.0
+	Stable tag: 1.3.1
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,10 +78,13 @@ then paste this shortcode anywhere in your page to display Testimonial<br />
 == Changelog ==
 
 
-	= 1.3 =
-    * 06/06/2015 fix - Slide Speed issue fixed.
+	= 1.3.1 =
+    * 08/07/2015 re-write plugin code & made with OOP.
+    * 08/07/2015 - add - Star ratings icon.	
 
 	= 1.2 =
+    * 17/12/2014 Added Theme Simple.
+    * 17/12/2014 Added Theme Rounded Vertical.
     * 12/12/2014 Added Theme Rounded.
 
 	

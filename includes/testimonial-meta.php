@@ -108,9 +108,8 @@ function meta_boxes_testimonial_input( $post ) {
 	$testimonial_fb = get_post_meta( $post->ID, 'testimonial_fb', true );
 	$testimonial_twitter = get_post_meta( $post->ID, 'testimonial_twitter', true );
 	$testimonial_google = get_post_meta( $post->ID, 'testimonial_google', true );		
-	$testimonial_pinterest = get_post_meta( $post->ID, 'testimonial_pinterest', true );	
-
-
+	$testimonial_pinterest = get_post_meta( $post->ID, 'testimonial_pinterest', true );
+	$testimonial_ratings = get_post_meta( $post->ID, 'testimonial_ratings', true );	
 
 
 
@@ -164,7 +163,12 @@ function meta_boxes_testimonial_input( $post ) {
         </td>
     </tr>
 
-
+    <tr valign="top">
+        <td style="vertical-align:middle;">
+        <strong>Star rate 1-5</strong><br /><br /> 
+        <input type="text" size="30" placeholder="5"   name="testimonial_ratings" value="<?php if(!empty($testimonial_ratings)) echo $testimonial_ratings; ?>" />
+        </td>
+    </tr>
 
 
 </table>
@@ -215,7 +219,7 @@ function meta_boxes_testimonial_save( $post_id ) {
 	$testimonial_twitter = sanitize_text_field( $_POST['testimonial_twitter'] );	
 	$testimonial_google = sanitize_text_field( $_POST['testimonial_google'] );
 	$testimonial_pinterest = sanitize_text_field( $_POST['testimonial_pinterest'] );	
-	
+	$testimonial_ratings = sanitize_text_field( $_POST['testimonial_ratings'] );	
 	
 			
 
@@ -226,7 +230,7 @@ function meta_boxes_testimonial_save( $post_id ) {
 	update_post_meta( $post_id, 'testimonial_twitter', $testimonial_twitter );
 	update_post_meta( $post_id, 'testimonial_google', $testimonial_google );
 	update_post_meta( $post_id, 'testimonial_pinterest', $testimonial_pinterest );	
-
+	update_post_meta( $post_id, 'testimonial_ratings', $testimonial_ratings );
 	
 
 }
@@ -326,7 +330,6 @@ function meta_boxes_testimonial_sc_input( $post ) {
 	$testimonial_stop_on_hover = get_post_meta( $post->ID, 'testimonial_stop_on_hover', true );
 	$testimonial_slider_navigation = get_post_meta( $post->ID, 'testimonial_slider_navigation', true );
 	$testimonial_slider_navigation_speed = get_post_meta( $post->ID, 'testimonial_slider_navigation_speed', true );
-	$testimonial_slide_speed = get_post_meta( $post->ID, 'testimonial_slide_speed', true );		
 		
 	$testimonial_slider_pagination = get_post_meta( $post->ID, 'testimonial_slider_pagination', true );
 	$testimonial_pagination_slide_speed = get_post_meta( $post->ID, 'testimonial_pagination_slide_speed', true );
@@ -353,10 +356,34 @@ function meta_boxes_testimonial_sc_input( $post ) {
 	$testimonial_items_content_color = get_post_meta( $post->ID, 'testimonial_items_content_color', true );	
 	$testimonial_items_content_font_size = get_post_meta( $post->ID, 'testimonial_items_content_font_size', true );		
 
+	$testimonial_star_icon_url = get_post_meta( $post->ID, 'testimonial_star_icon_url', true );
+
 	$testimonial_items_thumb_size = get_post_meta( $post->ID, 'testimonial_items_thumb_size', true );	
 	$testimonial_items_thumb_max_hieght = get_post_meta( $post->ID, 'testimonial_items_thumb_max_hieght', true );	
+
 	
 
+	if(empty($testimonial_content_source))
+		{
+			$testimonial_content_source = 'latest';
+		}
+
+	if(empty($testimonial_slider_touch_drag))
+		{
+			$testimonial_slider_touch_drag = 'true';
+		}
+
+		
+	if(empty($testimonial_taxonomy_category))
+		{
+			$testimonial_taxonomy_category = '';
+		}		
+		
+	if(empty($testimonial_items_display))
+		{
+			$testimonial_items_display = '';
+		}			
+		
 
 ?>
 
@@ -376,10 +403,15 @@ function meta_boxes_testimonial_sc_input( $post ) {
             <li nav="1" class="nav1 active">Options</li>
             <li nav="2" class="nav2">Style</li>
             <li nav="3" class="nav3">Content</li>
+            <li nav="5" class="nav5">Slider Option</li>
+            <li nav="6" class="nav6">Grid Option</li>
+                       
         </ul> <!-- tab-nav end -->
         
 		<ul class="box">
             <li style="display: block;" class="box1 tab-box active">
+            
+
 				<div class="option-box">
                     <p class="option-title">Number of post to display.</p>
                     <p class="option-info"></p>
@@ -406,174 +438,49 @@ function meta_boxes_testimonial_sc_input( $post ) {
                     <input type="text" name="testimonial_items_thumb_max_hieght" placeholder="ex:150px number with px" id="testimonial_items_thumb_max_hieght" value="<?php if(!empty($testimonial_items_thumb_max_hieght)) echo $testimonial_items_thumb_max_hieght; else echo ""; ?>" />
                     
                 </div>
-                
-                
-                
-				<div class="option-box">
-                    <p class="option-title">Slider Column Number.</p>
-                    <p class="option-info"></p>
-                    <input type="text" size="5"  name="testimonial_column_number" value="<?php if(!empty($testimonial_column_number)) echo $testimonial_column_number; else echo 1; ?>" />
-                    
-                    
-                </div>                
-                
-                
-				<div class="option-box">
-                    <p class="option-title">Slider Auto Play.</p>
-                    <p class="option-info"></p>
-                    <input type="checkbox" id="testimonial_auto_play" name="testimonial_auto_play" value="true" <?php if(($testimonial_auto_play=="true")) echo "checked"; else echo ""; ?> />
-                    <?php if(($testimonial_auto_play=="true")) { ?>
-                    <label for="testimonial_auto_play" >Active</label>
-                    <?php } 
-                        
-                        else
-                            {
-                            ?>
-                            <label for="testimonial_auto_play" >Inactive</label>
-                            <?php
-                            }
-                    ?> 
-                </div>
-                                
-				<div class="option-box">
-                    <p class="option-title">Slider Stop on Hover</p>
-                    <p class="option-info"></p>
-                    <input type="checkbox" id="testimonial_stop_on_hover" name="testimonial_stop_on_hover" value="true" <?php if(($testimonial_stop_on_hover=="true")) echo "checked"; else echo ""; ?> />
-                    <?php if(($testimonial_stop_on_hover=="true")) { ?>
-                    <label for="testimonial_stop_on_hover" >Active</label>
-                    <?php } 
-                        
-                        else
-                            {
-                            ?>
-                            <label for="testimonial_stop_on_hover" >Inactive</label>
-                            <?php
-                            }
-                    ?>
-                </div>         
-				<div class="option-box">
-                    <p class="option-title">Slider Navigation at Top</p>
-                    <p class="option-info"></p>
-                    <input type="checkbox" id="testimonial_slider_navigation" name="testimonial_slider_navigation" value="true" <?php if(($testimonial_slider_navigation=="true")) echo "checked"; else echo ""; ?> />
-                    <?php if(($testimonial_slider_navigation=="true")) { ?>
-                    <label for="testimonial_slider_navigation" >Active</label>
-                    <?php } 
-                        
-                        else
-                            {
-                            ?>
-                            <label for="testimonial_slider_navigation" >Inactive</label>
-                            <?php
-                            }
-                    ?>
-                </div> 
-				<div class="option-box">
-                    <p class="option-title">Slider Pagination at Bottom</p>
-                    <p class="option-info"></p>
-                    <input type="checkbox" id="testimonial_slider_pagination" name="testimonial_slider_pagination" value="true" <?php if(($testimonial_slider_pagination=="true")) echo "checked"; else echo ""; ?> />
-                    <?php if(($testimonial_slider_pagination=="true")) { ?>
-                    <label for="testimonial_slider_pagination" >Active</label>
-                    <?php } 
-                        
-                        else
-                            {
-                            ?>
-                            <label for="testimonial_slider_pagination" >Inactive</label>
-                            <?php
-                            }
-                    ?>
-                </div> 
-				<div class="option-box">
-                    <p class="option-title">Pagination Number Counting</p>
-                    <p class="option-info"></p>
-                    <input type="checkbox" id="testimonial_slider_pagination_count" name="testimonial_slider_pagination_count" value="true" <?php if(($testimonial_slider_pagination_count=="true")) echo "checked"; else echo ""; ?> />
-                    <?php if(($testimonial_slider_pagination_count=="true")) { ?>
-                    <label for="testimonial_slider_pagination_count" >Active</label>
-                    <?php } 
-                        
-                    else
-                        {
-                        ?>
-                        <label for="testimonial_slider_pagination_count" >Inactive</label>
-                        <?php
-                        }
-                    ?>
-                </div> 
-                
-				<div class="option-box">
-                    <p class="option-title">Slide Speed</p>
-                    <p class="option-info"></p> 
-                    <input type="text" id="testimonial_slide_speed" placeholder="1000" name="testimonial_slide_speed" value="<?php if(!empty($testimonial_slide_speed)) echo $testimonial_slide_speed; ?>"  />
-                </div> 
-                
-				<div class="option-box">
-                    <p class="option-title">Pagination Slide Speed</p>
-                    <p class="option-info"></p>
-                    <input type="text" id="testimonial_pagination_slide_speed" name="testimonial_pagination_slide_speed" value="<?php if(!empty($testimonial_pagination_slide_speed)) echo $testimonial_pagination_slide_speed; else echo "1000"; ?>"  />
-                </div>
-                
-                
-				<div class="option-box">
-                    <p class="option-title">Pagination Background Color</p>
-                    <p class="option-info"></p>
-                    <input type="text" name="testimonial_slider_pagination_bg" id="testimonial_slider_pagination_bg" value="<?php if(!empty($testimonial_slider_pagination_bg)) echo $testimonial_slider_pagination_bg; else echo "#1eb286"; ?>" />
-                </div>                
-                
-                
-				<div class="option-box">
-                    <p class="option-title">Pagination Text Color</p>
-                    <p class="option-info"></p>
-                    <input type="text" name="testimonial_slider_pagination_text_color" id="testimonial_slider_pagination_text_color" value="<?php if(!empty($testimonial_slider_pagination_text_color)) echo $testimonial_slider_pagination_text_color; else echo "#fff"; ?>" />
-                </div>                
-                                
-                
-                
-                
-                
-                 
-                
-				<div class="option-box">
-                    <p class="option-title">Slider Touch Drag Enabled</p>
-                    <p class="option-info"></p>
-                    <input type="checkbox" id="testimonial_slider_touch_drag" name="testimonial_slider_touch_drag" value="true" <?php if(($testimonial_slider_touch_drag=="true")) echo "checked"; else echo ""; ?> />
-                    <?php if(($testimonial_slider_touch_drag=="true")) { ?>
-                    <label for="testimonial_slider_touch_drag" >Active</label>
-                    <?php } 
-                        
-                    else
-                        {
-                        ?>
-                        <label for="testimonial_slider_touch_drag" >Inactive</label>
-                        <?php
-                        }
-                    ?>
-                </div>    
-				<div class="option-box">
-                    <p class="option-title">Slider Mouse Drag Enabled</p>
-                    <p class="option-info"></p>
-                    <input type="checkbox" id="testimonial_slider_mouse_drag" name="testimonial_slider_mouse_drag" value="true" <?php if(($testimonial_slider_mouse_drag=="true")) echo "checked"; else echo ""; ?> />
-                    <?php if(($testimonial_slider_mouse_drag=="true")) { ?>
-                    <label for="testimonial_slider_mouse_drag" >Active</label>
-                    <?php } 
-                        
-                    else
-                        {
-                        ?>
-                        <label for="testimonial_slider_mouse_drag" >Inactive</label>
-                        <?php
-                        }
-                    ?>
-                </div> 
-                
+  
                 
             </li>
             <li style="display: none;" class="box2 tab-box ">
 				<div class="option-box">
                     <p class="option-title">Themes</p>
                     <p class="option-info"></p>
+                    
+                    <?php
+                    $class_testimonial_functions = new class_testimonial_functions();
+					
+					$testimonial_themes_list = $class_testimonial_functions->testimonial_themes();
+					
+					
+					
+					?>
+                    
+                    
                     <select name="testimonial_themes"  >
-                    <option class="testimonial_themes_flat" value="flat" <?php if($testimonial_themes=="flat")echo "selected"; ?>>Flat</option>
-                    <option class="testimonial_themes_rounded" value="rounded" <?php if($testimonial_themes=="rounded")echo "selected"; ?>>Rounded</option>
+                    
+                    <?php
+                    
+					foreach($testimonial_themes_list as $theme_key=>$theme_name){
+						
+						echo '<option value="'.$theme_key.'"';
+						
+						if($testimonial_themes==$theme_key){
+							
+							echo " selected";
+							}
+						
+						echo '>';
+						echo $theme_name.'</option>';
+						
+						
+						
+						}
+					
+					
+					?>
+
+                    
+                    
 
                     </select>
                     
@@ -582,7 +489,7 @@ function meta_boxes_testimonial_sc_input( $post ) {
                 
 				<div class="option-box">
                     <p class="option-title">Background Image</p>
-                    <p class="option-info"></p>
+                    <p class="option-info">Keep empty text field if you don't want to use background image.</p>
 					<script>
                     jQuery(document).ready(function(jQuery)
                         {
@@ -684,6 +591,14 @@ function meta_boxes_testimonial_sc_input( $post ) {
                     <input type="text" name="testimonial_items_content_font_size" id="testimonial_items_content_font_size" value="<?php if(!empty($testimonial_items_content_font_size)) echo $testimonial_items_content_font_size; else echo "13px"; ?>" />
                 </div> 
                 
+                     
+				<div class="option-box">
+                    <p class="option-title">Star rate icon url</p>
+                    <p class="option-info"></p>
+                    <input type="text" placeholder="http://example.com/icon.png" name="testimonial_star_icon_url" id="testimonial_star_icon_url" value="<?php if(!empty($testimonial_star_icon_url)) echo $testimonial_star_icon_url; ?>" />
+                </div>             
+                     
+                     
                                 
                
 
@@ -719,8 +634,6 @@ function meta_boxes_testimonial_sc_input( $post ) {
             </div>
             </li>            
 
-                       
-            
             </ul>
                     
                     
@@ -741,10 +654,174 @@ function meta_boxes_testimonial_sc_input( $post ) {
                 
                 
             </li>
+       
+            <li style="display: none;" class="box5 tab-box ">
+                
+				<div class="option-box">
+                    <p class="option-title">Slider Column Number.</p>
+                    <p class="option-info"></p>
+                    <input type="text" size="5"  name="testimonial_column_number" value="<?php if(!empty($testimonial_column_number)) echo $testimonial_column_number; else echo 1; ?>" />
+                    
+                    
+                </div>                
+                
+                
+				<div class="option-box">
+                    <p class="option-title">Slider Auto Play.</p>
+                    <p class="option-info"></p>
+                    <input type="checkbox" id="testimonial_auto_play" name="testimonial_auto_play" value="true" <?php if(($testimonial_auto_play=="true")) echo "checked"; else echo ""; ?> />
+                    <?php if(($testimonial_auto_play=="true")) { ?>
+                    <label for="testimonial_auto_play" >Active</label>
+                    <?php } 
+                        
+                        else
+                            {
+                            ?>
+                            <label for="testimonial_auto_play" >Inactive</label>
+                            <?php
+                            }
+                    ?> 
+                </div>
+                                
+				<div class="option-box">
+                    <p class="option-title">Slider Stop on Hover</p>
+                    <p class="option-info"></p>
+                    <input type="checkbox" id="testimonial_stop_on_hover" name="testimonial_stop_on_hover" value="true" <?php if(($testimonial_stop_on_hover=="true")) echo "checked"; else echo ""; ?> />
+                    <?php if(($testimonial_stop_on_hover=="true")) { ?>
+                    <label for="testimonial_stop_on_hover" >Active</label>
+                    <?php } 
+                        
+                        else
+                            {
+                            ?>
+                            <label for="testimonial_stop_on_hover" >Inactive</label>
+                            <?php
+                            }
+                    ?>
+                </div>         
+				<div class="option-box">
+                    <p class="option-title">Slider Navigation at Top</p>
+                    <p class="option-info"></p>
+                    <input type="checkbox" id="testimonial_slider_navigation" name="testimonial_slider_navigation" value="true" <?php if(($testimonial_slider_navigation=="true")) echo "checked"; else echo ""; ?> />
+                    <?php if(($testimonial_slider_navigation=="true")) { ?>
+                    <label for="testimonial_slider_navigation" >Active</label>
+                    <?php } 
+                        
+                        else
+                            {
+                            ?>
+                            <label for="testimonial_slider_navigation" >Inactive</label>
+                            <?php
+                            }
+                    ?>
+                </div> 
+				<div class="option-box">
+                    <p class="option-title">Slider Pagination at Bottom</p>
+                    <p class="option-info"></p>
+                    <input type="checkbox" id="testimonial_slider_pagination" name="testimonial_slider_pagination" value="true" <?php if(($testimonial_slider_pagination=="true")) echo "checked"; else echo ""; ?> />
+                    <?php if(($testimonial_slider_pagination=="true")) { ?>
+                    <label for="testimonial_slider_pagination" >Active</label>
+                    <?php } 
+                        
+                        else
+                            {
+                            ?>
+                            <label for="testimonial_slider_pagination" >Inactive</label>
+                            <?php
+                            }
+                    ?>
+                </div> 
+				<div class="option-box">
+                    <p class="option-title">Pagination Number Counting</p>
+                    <p class="option-info"></p>
+                    <input type="checkbox" id="testimonial_slider_pagination_count" name="testimonial_slider_pagination_count" value="true" <?php if(($testimonial_slider_pagination_count=="true")) echo "checked"; else echo ""; ?> />
+                    <?php if(($testimonial_slider_pagination_count=="true")) { ?>
+                    <label for="testimonial_slider_pagination_count" >Active</label>
+                    <?php } 
+                        
+                    else
+                        {
+                        ?>
+                        <label for="testimonial_slider_pagination_count" >Inactive</label>
+                        <?php
+                        }
+                    ?>
+                </div> 
+                
+				<div class="option-box">
+                    <p class="option-title">Slide Speed</p>
+                    <p class="option-info"></p> 
+                    <input type="text" id="testimonial_slide_speed" name="testimonial_slide_speed" value="<?php if(!empty($testimonial_slide_speed)) echo $testimonial_slide_speed; else echo "1000"; ?>"  />
+                </div> 
+                
+				<div class="option-box">
+                    <p class="option-title">Pagination Slide Speed</p>
+                    <p class="option-info"></p>
+                    <input type="text" id="testimonial_pagination_slide_speed" name="testimonial_pagination_slide_speed" value="<?php if(!empty($testimonial_pagination_slide_speed)) echo $testimonial_pagination_slide_speed; else echo "1000"; ?>"  />
+                </div>
+                
+                
+				<div class="option-box">
+                    <p class="option-title">Pagination Background Color</p>
+                    <p class="option-info"></p>
+                    <input type="text" name="testimonial_slider_pagination_bg" id="testimonial_slider_pagination_bg" value="<?php if(!empty($testimonial_slider_pagination_bg)) echo $testimonial_slider_pagination_bg; else echo "#1eb286"; ?>" />
+                </div>                
+                
+                
+				<div class="option-box">
+                    <p class="option-title">Pagination Text Color</p>
+                    <p class="option-info"></p>
+                    <input type="text" name="testimonial_slider_pagination_text_color" id="testimonial_slider_pagination_text_color" value="<?php if(!empty($testimonial_slider_pagination_text_color)) echo $testimonial_slider_pagination_text_color; else echo "#fff"; ?>" />
+                </div>                
+                                
+                
+                
+                
+                
+                 
+                
+				<div class="option-box">
+                    <p class="option-title">Slider Touch Drag Enabled</p>
+                    <p class="option-info"></p>
+                    <input type="checkbox" id="testimonial_slider_touch_drag" name="testimonial_slider_touch_drag" value="true" <?php if(($testimonial_slider_touch_drag=="true")) echo "checked"; else echo ""; ?> />
+                    <?php if(($testimonial_slider_touch_drag=="true")) { ?>
+                    <label for="testimonial_slider_touch_drag" >Active</label>
+                    <?php } 
+                        
+                    else
+                        {
+                        ?>
+                        <label for="testimonial_slider_touch_drag" >Inactive</label>
+                        <?php
+                        }
+                    ?>
+                </div>    
+				<div class="option-box">
+                    <p class="option-title">Slider Mouse Drag Enabled</p>
+                    <p class="option-info"></p>
+                    <input type="checkbox" id="testimonial_slider_mouse_drag" name="testimonial_slider_mouse_drag" value="true" <?php if(($testimonial_slider_mouse_drag=="true")) echo "checked"; else echo ""; ?> />
+                    <?php if(($testimonial_slider_mouse_drag=="true")) { ?>
+                    <label for="testimonial_slider_mouse_drag" >Active</label>
+                    <?php } 
+                        
+                    else
+                        {
+                        ?>
+                        <label for="testimonial_slider_mouse_drag" >Inactive</label>
+                        <?php
+                        }
+                    ?>
+                </div> 
             
+            </li>  
+            <li style="display: none;" class="box6 tab-box ">
+				<div class="option-box">
+                    <p class="option-title">Grid items margin.</p>
+                    <p class="option-info"></p>
+                    <input type="text" placeholder="10px"   name="testimonial_grid_items_margin" value="<?php if(!empty($testimonial_grid_items_margin)) echo $testimonial_grid_items_margin; ?>" />
+                </div>
             
-            
-            
+            </li>  
             
             
             
@@ -799,17 +876,58 @@ function meta_boxes_testimonial_sc_save( $post_id ) {
 	$testimonial_total_items = sanitize_text_field( $_POST['testimonial_total_items'] );		
 
 	$testimonial_column_number = sanitize_text_field( $_POST['testimonial_column_number'] );
+	
+	if(empty($_POST['testimonial_auto_play']))
+		{
+			$_POST['testimonial_auto_play'] = '';
+		}
+	
 	$testimonial_auto_play = sanitize_text_field( $_POST['testimonial_auto_play'] );
-	$testimonial_stop_on_hover = sanitize_text_field( $_POST['testimonial_stop_on_hover'] );	
+	
+	if(empty($_POST['testimonial_stop_on_hover']))
+		{
+			$_POST['testimonial_stop_on_hover'] = '';
+		}	
+	
+	$testimonial_stop_on_hover = sanitize_text_field( $_POST['testimonial_stop_on_hover'] );
+	
+	if(empty($_POST['testimonial_slider_navigation']))
+		{
+			$_POST['testimonial_slider_navigation'] = '';
+		}		
+		
 	$testimonial_slider_navigation = sanitize_text_field( $_POST['testimonial_slider_navigation'] );
 	$testimonial_slide_speed = sanitize_text_field( $_POST['testimonial_slide_speed'] );
 	
+	
+	if(empty($_POST['testimonial_slider_pagination']))
+		{
+			$_POST['testimonial_slider_pagination'] = '';
+		}		
+	
 	$testimonial_slider_pagination = sanitize_text_field( $_POST['testimonial_slider_pagination'] );	
 	$testimonial_pagination_slide_speed = sanitize_text_field( $_POST['testimonial_pagination_slide_speed'] );
+	
+	if(empty($_POST['testimonial_slider_pagination_count']))
+		{
+			$_POST['testimonial_slider_pagination_count'] = '';
+		}
+	
 	$testimonial_slider_pagination_count = sanitize_text_field( $_POST['testimonial_slider_pagination_count'] );
 	
 	$testimonial_slider_pagination_bg = sanitize_text_field( $_POST['testimonial_slider_pagination_bg'] );
 	$testimonial_slider_pagination_text_color = sanitize_text_field( $_POST['testimonial_slider_pagination_text_color'] );	
+	
+	if(empty($_POST['testimonial_slider_touch_drag']))
+		{
+			$_POST['testimonial_slider_touch_drag'] = '';
+		}	
+	if(empty($_POST['testimonial_slider_mouse_drag']))
+		{
+			$_POST['testimonial_slider_mouse_drag'] = '';
+		}	
+		
+		
 	
 	$testimonial_slider_touch_drag = sanitize_text_field( $_POST['testimonial_slider_touch_drag'] );
 	$testimonial_slider_mouse_drag = sanitize_text_field( $_POST['testimonial_slider_mouse_drag'] );	
@@ -819,12 +937,18 @@ function meta_boxes_testimonial_sc_save( $post_id ) {
 	$testimonial_content_month = sanitize_text_field( $_POST['testimonial_content_month'] );
 	$testimonial_content_month_year = sanitize_text_field( $_POST['testimonial_content_month_year'] );	
 
-
 	if(empty($_POST['testimonial_taxonomy_category']))
 		{
 			$_POST['testimonial_taxonomy_category'] = '';
-		}
+		}	
+
 	$testimonial_taxonomy_category = stripslashes_deep( $_POST['testimonial_taxonomy_category'] );
+	
+	if(empty($_POST['testimonial_post_ids']))
+		{
+			$_POST['testimonial_post_ids'] = '';
+		}	
+	
 	
 	$testimonial_post_ids = stripslashes_deep( $_POST['testimonial_post_ids'] );	
 
@@ -834,11 +958,17 @@ function meta_boxes_testimonial_sc_save( $post_id ) {
 	$testimonial_items_content_color = sanitize_text_field( $_POST['testimonial_items_content_color'] );	
 	$testimonial_items_content_font_size = sanitize_text_field( $_POST['testimonial_items_content_font_size'] );	
 
+	$testimonial_star_icon_url = sanitize_text_field( $_POST['testimonial_star_icon_url'] );
+
 	$testimonial_items_thumb_size = sanitize_text_field( $_POST['testimonial_items_thumb_size'] );
 	$testimonial_items_thumb_max_hieght = sanitize_text_field( $_POST['testimonial_items_thumb_max_hieght'] );	
 	
 	
-	
+	if(empty($_POST['testimonial_items_display']))
+		{
+			$_POST['testimonial_items_display'] = '';
+		}		
+
 			
 
 
@@ -878,11 +1008,12 @@ function meta_boxes_testimonial_sc_save( $post_id ) {
 	update_post_meta( $post_id, 'testimonial_items_content_color', $testimonial_items_content_color );
 	update_post_meta( $post_id, 'testimonial_items_content_font_size', $testimonial_items_content_font_size );
 
+	update_post_meta( $post_id, 'testimonial_star_icon_url', $testimonial_star_icon_url );
+
 	update_post_meta( $post_id, 'testimonial_items_thumb_size', $testimonial_items_thumb_size );	
 	update_post_meta( $post_id, 'testimonial_items_thumb_max_hieght', $testimonial_items_thumb_max_hieght );
 	
 
-	
 
 }
 add_action( 'save_post', 'meta_boxes_testimonial_sc_save' );

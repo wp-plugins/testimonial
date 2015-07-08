@@ -2,48 +2,6 @@
 /* CSS Document */
 
 
-/*Admin CSS*/
-
-#testimonial_sc_metabox ul.testimonial_bg_img_list{}
-
-#testimonial_sc_metabox ul.testimonial_bg_img_list li {
-  display: inline-block;
-  margin: 5px;
-}
-#testimonial_sc_metabox ul.testimonial_bg_img_list li.bg-selected {}
-
-#testimonial_sc_metabox ul.testimonial_bg_img_list li img{border: 2px solid #ffffff;}
-
-#testimonial_sc_metabox ul.testimonial_bg_img_list li.bg-selected img{
-  border: 2px solid #ff5a11;
-}
-
-
-
-
-#testimonial_sc_metabox div.testimonial_taxonomy_category{}
-
-
-#testimonial_sc_metabox ul.content_source_area {
-  margin-left: 15px;
-}
-
-#testimonial_sc_metabox ul.content_source_area li{}
-
-
-#testimonial_sc_metabox ul.content_source_area .content-source-box {
-  display: none;
-}
-
-#testimonial_sc_metabox ul.content_source_area li div.active {
-  background: none repeat scroll 0 0 #e6e6e6;
-  border-left: 3px solid #11b063;
-  display: block;
-  margin: 10px 10px 0 20px;
-  padding: 10px 0 10px 5px;
-}
-
-
 
 
 
@@ -60,4 +18,22 @@
   text-align: center;
   width: 100%;
 }
+.testimonial-container .star-rate{
+
+}
+
+
+.testimonial-container .star-rate .ratings {
+  background: url("images/star.png") repeat scroll 0 0 / 100% auto rgba(0, 0, 0, 0);
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+
+.testimonial-container .owl-buttons {
+	display:none;
+}
+
+
 

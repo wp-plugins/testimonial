@@ -13,21 +13,20 @@ if ( ! defined('ABSPATH')) exit;
 		
 		include testimonial_plugin_dir.'/templates/variables.php';
 
+		
 		$html.= '
 		<div  class="testimonial-container" style="background-image:url('.$testimonial_bg_img.')">
-		<ul  id="testimonial-'.$post_id.'" class="owl-carousel testimonial-items testimonial-'.$testimonial_themes.'">';
+		<ul  id="testimonial-'.$post_id.'" class="testimonial-items testimonial-'.$testimonial_themes.'">';
+		
 		include testimonial_plugin_dir.'/templates/query.php';
-			
-
-								
+					
 		
 		if ( $wp_query->have_posts() ) :
-		
-		
-		
+
 		$i=0;
 		
 		while ( $wp_query->have_posts() ) : $wp_query->the_post();
+		
 
 		$testimonial_thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), $testimonial_items_thumb_size );
 		$testimonial_thumb_url = $testimonial_thumb['0'];
@@ -49,15 +48,6 @@ if ( ! defined('ABSPATH')) exit;
 		$html.= '<li style="width:'.$testimonial_items_max_width.'; text-align:'.$testimonial_item_text_align.';" class="testimonial-item '.$even_odd.'" >';
 		$html.= '<div class="testimonial-post">';		
 		
-		
-		if(!empty($testimonial_thumb_url))
-			{
-					$html.= '
-		<div style="max-height:'.$testimonial_items_thumb_max_hieght.';" class="testimonial-thumb">
-			<img src="'.$testimonial_thumb_url.'" />
-		</div>';
-			}
-
 
 	$testimonial_member_position = get_post_meta(get_the_ID(), 'testimonial_member_position', true );
 	$testimonial_fb = get_post_meta(get_the_ID(), 'testimonial_fb', true );
@@ -75,15 +65,16 @@ if ( ! defined('ABSPATH')) exit;
 			
 			$html.= '<div class="testimonial-content" >';
 			
+			
+			include testimonial_plugin_dir.'/templates/content.php';
+			include testimonial_plugin_dir.'/templates/star-rate.php';			
 			include testimonial_plugin_dir.'/templates/title.php';
 
 
 			if(!empty($testimonial_member_position))
 				{
 					include testimonial_plugin_dir.'/templates/position.php';
-				}
-
-
+				}		
 
 			$html.= '<div class="testimonial-social" >';
 			
@@ -115,16 +106,10 @@ if ( ! defined('ABSPATH')) exit;
 					</span>';
 				}
 			$html.= '</div>';
-			
-
-			include testimonial_plugin_dir.'/templates/content.php';
-			include testimonial_plugin_dir.'/templates/star-rate.php';	
-			$html.= '</div>			
-			
-			</div>
-
-		</li>';
 		
+		
+		
+		$html.= '</div></div></li>';
 		
 		$i++;
 		
@@ -137,4 +122,4 @@ if ( ! defined('ABSPATH')) exit;
 			
 		$html.= '</ul></div>';
 		
-		include testimonial_plugin_dir.'/templates/scripts.php';
+

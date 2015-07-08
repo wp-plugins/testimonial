@@ -73,6 +73,9 @@ then paste this shortcode anywhere in your page to display Testimonial<br />
 
 == Screenshots ==
 1. screenshot-1
+2. screenshot-2
+3. screenshot-3
+4. screenshot-4
 
 
 == Changelog ==

@@ -17,8 +17,9 @@ Testimonial is pure html & css3 responsive Testimonial slider for wordpress.
 Very easy to use via shortcode anywhere, 
 
 ### Testimonial by http://paratheme.com
-Plugin page 
-http://paratheme.com/items/testimonial-responsive-testimonial-slider-for-wordpress/
+* [Live Demo! &raquo;](http://paratheme.com/demo/testimonial/)
+* [Buy Premium! &raquo;](http://paratheme.com/items/testimonial-responsive-testimonial-slider-grid-for-wordpress/)
+
 
 
 
@@ -35,6 +36,15 @@ http://paratheme.com/items/testimonial-responsive-testimonial-slider-for-wordpre
 * Social link for clients.
 * custom star rating icon.
 
+
+<strong>Premium Features</strong><br />
+
+* Query Testimonial by Categories/Terms/Groups.
+* Query Testimonial by ID.
+* Layout Builder for Sorting grid/slider items.
+* Extend/Filter grid items by filter hook.
+* Extend themes by filter hook. create your own theme in a minute.
+* Ready sample Addon inside plugin folder.
 
 == Installation ==
 
